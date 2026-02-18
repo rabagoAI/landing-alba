@@ -1,0 +1,508 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#inicio" class="text-base font-bold text-gray-800">Alba Corregidor</a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#sobre-mi" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Sobre mí</a>
+        <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Servicios</a>
+        <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Contacto</a>
+        <a href="#contacto" class="btn-primary text-sm py-2 px-4">Solicitar clase</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Menú">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4">
+      <a href="#sobre-mi" class="text-sm font-medium text-gray-700 hover:text-blue-600">Sobre mí</a>
+      <a href="#servicios" class="text-sm font-medium text-gray-700 hover:text-blue-600">Servicios</a>
+      <a href="#contacto" class="text-sm font-medium text-gray-700 hover:text-blue-600">Contacto</a>
+      <a href="#contacto" class="btn-primary text-sm text-center">Solicitar clase</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="inicio" class="hero-section pt-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Top tag -->
+      <div class="reveal mb-2">
+        <span class="tag-top">🎓 Clases particulares · Curso 2024–2025</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left: text -->
+        <div class="reveal">
+          <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+            Aprende con<br/>
+            <span class="text-blue-600">Alba Corregidor</span>,<br/>
+            tu profesora de confianza
+          </h1>
+          <p class="text-gray-500 text-base leading-relaxed mb-6">
+            Licenciada en Magisterio con vocación por la enseñanza. Clases personalizadas para alumnos de Primaria, ESO y Bachillerato. Mejora tus notas y recupera la confianza en ti mismo.
+          </p>
+
+          <!-- Trust badges -->
+          <div class="flex flex-wrap gap-3 mb-8">
+            <span class="badge-blue">✅ Licenciada en Magisterio</span>
+            <span class="badge-blue">🎯 5+ años de experiencia</span>
+            <span class="badge-blue">📍 Presencial u online</span>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="#contacto" class="btn-primary">✉️ Contáctame</a>
+            <a href="#servicios" class="btn-outline">Ver servicios →</a>
+          </div>
+        </div>
+
+        <!-- Right: photo card -->
+        <div class="reveal reveal-delay-2">
+          <div class="hero-photo-wrap">
+            <!-- Teacher illustration / photo placeholder -->
+            <div class="flex flex-col items-center justify-center text-center px-8">
+              <div class="text-8xl mb-4">👩‍🏫</div>
+              <p class="text-blue-800 font-semibold text-lg">Alba Corregidor</p>
+              <p class="text-blue-600 text-sm">Profesora Particular</p>
+            </div>
+
+            <!-- Floating card -->
+            <div class="floating-card">
+              <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-base">⭐</div>
+              <div>
+                <p class="font-bold text-xs text-gray-800">Valoración media</p>
+                <p class="text-blue-600 font-bold text-sm">5.0 / 5.0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS BAR ===== -->
+  <div class="stats-bar">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200">
+        <div class="stat-item reveal">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Alumnos ayudados</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Tasa de aprobados</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-number">5k+</div>
+          <div class="stat-label">Horas impartidas</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Asignaturas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SOBRE MÍ ===== -->
+  <section id="sobre-mi" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <!-- Illustration -->
+      <div class="reveal">
+        <div class="about-illustration">
+          <span>🎓</span>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="reveal reveal-delay-2">
+        <span class="tag-top">Sobre mí</span>
+        <h2 class="section-title mt-2 mb-4">
+          Dedicada a despertar el amor por aprender en cada alumno
+        </h2>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">
+          Creo que cada alumno aprende de manera diferente. Mi enfoque está adaptado a las necesidades individuales, construyendo una base sólida y fomentando una curiosidad genuina por el conocimiento.
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          Con más de 5 años de experiencia tanto en aulas como en clases particulares, he desarrollado estrategias que ayudan a los alumnos no solo a mejorar sus notas, sino también a superar la ansiedad ante los exámenes.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="badge-blue">🌱 Mentalidad de crecimiento</span>
+          <span class="badge-blue">♾️ Para todos los estilos</span>
+          <span class="badge-blue">💬 Comunicación con familias</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICIOS ===== -->
+  <section id="servicios" class="py-24 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <h2 class="section-title">Cómo puedo ayudarte</h2>
+        <p class="section-sub mt-2">Elige el formato que mejor se adapte a tu horario y preferencias.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="card-icon" style="background:#eff6ff;">📚</div>
+          <h3>Clases Particulares</h3>
+          <p>Sesiones individuales 1 a 1 completamente adaptadas al nivel y ritmo de cada alumno. Trabajamos juntos para reforzar los puntos débiles.</p>
+          <ul>
+            <li>Horario flexible</li>
+            <li>Presencial u online</li>
+            <li>Materiales incluidos</li>
+          </ul>
+          <a href="#contacto" class="learn-more">Solicitar info →</a>
+        </div>
+
+        <!-- Card 2 (popular) -->
+        <div class="service-card reveal reveal-delay-2" style="border-color: #1a56db;">
+          <span class="popular-badge">Más popular</span>
+          <div class="card-icon" style="background:#eff6ff;">🎓</div>
+          <h3>Apoyo Escolar</h3>
+          <p>Refuerzo continuo de las materias del colegio o instituto. Ayudo con los deberes, explico los conceptos del aula y preparo para controles.</p>
+          <ul>
+            <li>Todas las asignaturas</li>
+            <li>Seguimiento semanal</li>
+            <li>Informes a las familias</li>
+          </ul>
+          <a href="#contacto" class="learn-more">Solicitar info →</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="card-icon" style="background:#eff6ff;">📝</div>
+          <h3>Preparación de Exámenes</h3>
+          <p>Preparación intensiva para exámenes, selectividad o pruebas de acceso. Técnicas de estudio, simulacros y estrategias para rendir al máximo.</p>
+          <ul>
+            <li>Técnicas de estudio</li>
+            <li>Simulacros de examen</li>
+            <li>Gestión del estrés</li>
+          </ul>
+          <a href="#contacto" class="learn-more">Solicitar info →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METODOLOGÍA ===== -->
+  <section id="metodologia" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <h2 class="section-title">Cómo trabajo con cada alumno</h2>
+        <p class="section-sub mt-2">Un proceso claro y efectivo para obtener resultados reales y duraderos.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="reveal space-y-0">
+          <div class="method-row">
+            <div class="method-num">1</div>
+            <div>
+              <h3 class="font-bold text-gray-800 mb-1">Diagnóstico inicial gratuito</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">Primera sesión para conocer al alumno, evaluar su nivel e identificar sus puntos débiles y objetivos.</p>
+            </div>
+          </div>
+          <div class="method-row">
+            <div class="method-num">2</div>
+            <div>
+              <h3 class="font-bold text-gray-800 mb-1">Plan de trabajo personalizado</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">Diseño un plan adaptado: objetivos claros, materiales específicos y calendario realista.</p>
+            </div>
+          </div>
+          <div class="method-row">
+            <div class="method-num">3</div>
+            <div>
+              <h3 class="font-bold text-gray-800 mb-1">Clases dinámicas y participativas</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">Sesiones activas donde el alumno es protagonista, con recursos visuales y aprendizaje activo.</p>
+            </div>
+          </div>
+          <div class="method-row">
+            <div class="method-num">4</div>
+            <div>
+              <h3 class="font-bold text-gray-800 mb-1">Seguimiento y comunicación continua</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">Evaluación constante del progreso y comunicación regular con las familias para mantenerlas informadas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2 flex justify-center">
+          <div class="about-illustration w-full max-w-sm">
+            <span>🌱</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIOS ===== -->
+  <section id="testimonios" class="py-24 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <h2 class="section-title">Lo que dicen las familias</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- T1 -->
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="flex gap-1 mb-3">
+            {[1,2,3,4,5].map(() => <span class="text-yellow-400 text-lg">★</span>)}
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed mb-4 italic">
+            "Alba tiene un don especial para conectar con los niños. Mi hijo pasó de odiar las matemáticas a pedir más clases. En tres meses subió dos puntos su nota media."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-base">👩</div>
+            <div>
+              <p class="font-bold text-sm text-gray-800">María García</p>
+              <p class="text-xs text-gray-500">Madre de alumno de 3º ESO</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- T2 -->
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="flex gap-1 mb-3">
+            {[1,2,3,4,5].map(() => <span class="text-yellow-400 text-lg">★</span>)}
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed mb-4 italic">
+            "Gracias a Alba aprobé la selectividad con una nota que nunca imaginé. Su método de estudio y los simulacros me dieron la confianza que necesitaba."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-base">👨</div>
+            <div>
+              <p class="font-bold text-sm text-gray-800">Carlos López</p>
+              <p class="text-xs text-gray-500">Alumno de 2º Bachillerato</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- T3 -->
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="flex gap-1 mb-3">
+            {[1,2,3,4,5].map(() => <span class="text-yellow-400 text-lg">★</span>)}
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed mb-4 italic">
+            "Lo que más valoro es su comunicación con los padres. Siempre nos mantiene informados del progreso de nuestra hija y nos da pautas para ayudarla en casa."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-base">👩</div>
+            <div>
+              <p class="font-bold text-sm text-gray-800">Ana Martínez</p>
+              <p class="text-xs text-gray-500">Madre de alumna de 5º Primaria</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section id="contacto" class="contact-section py-24 px-6">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+      <!-- Left: info -->
+      <div class="reveal">
+        <span class="tag-top" style="background:rgba(255,255,255,0.15); color:#93c5fd;">Contacto</span>
+        <h2 class="text-3xl font-extrabold text-white mt-3 mb-3">
+          ¿Empezamos tu camino de aprendizaje?
+        </h2>
+        <p class="text-gray-400 text-sm leading-relaxed mb-8">
+          Estoy aquí para responder cualquier pregunta sobre mi metodología, disponibilidad o precios. ¡Hablemos!
+        </p>
+
+        <div class="space-y-3">
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/34600000000?text=Hola%20Alba%2C%20me%20gustaría%20información%20sobre%20tus%20clases"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-info-item"
+          >
+            <div class="contact-icon-wrap" style="background:#25D366;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm text-white">WhatsApp</p>
+              <p class="text-xs text-gray-400">+34 600 000 000</p>
+            </div>
+          </a>
+
+          <!-- Email -->
+          <a href="mailto:alba@albacorregidor.com" class="contact-info-item">
+            <div class="contact-icon-wrap" style="background:#1a56db;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm text-white">Email</p>
+              <p class="text-xs text-gray-400">alba@albacorregidor.com</p>
+            </div>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://instagram.com/albacorregidor" target="_blank" rel="noopener noreferrer" class="contact-info-item">
+            <div class="contact-icon-wrap" style="background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm text-white">Instagram</p>
+              <p class="text-xs text-gray-400">@albacorregidor</p>
+            </div>
+          </a>
+
+          <!-- Location -->
+          <div class="contact-info-item" style="cursor:default;">
+            <div class="contact-icon-wrap" style="background:#374151;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm text-white">Ubicación</p>
+              <p class="text-xs text-gray-400">Presencial u online</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form card -->
+      <div class="reveal reveal-delay-2">
+        <div class="form-card">
+          <h3 class="font-bold text-gray-800 text-lg mb-5">Envíame un mensaje</h3>
+          <form id="contact-form" class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="form-label" for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre" required />
+              </div>
+              <div>
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required />
+              </div>
+            </div>
+            <div>
+              <label class="form-label" for="nivel">Nivel educativo</label>
+              <select id="nivel" name="nivel" class="form-input">
+                <option value="">Selecciona un nivel</option>
+                <option value="primaria">Educación Primaria</option>
+                <option value="eso">ESO</option>
+                <option value="bachillerato">Bachillerato</option>
+                <option value="universidad">Universidad</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="mensaje">Mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="4"
+                class="form-input resize-none"
+                placeholder="Cuéntame qué necesitas: asignatura, nivel, disponibilidad..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="btn-primary w-full justify-center py-3 text-sm">
+              <span id="btn-text">Enviar mensaje</span>
+              <span id="btn-loading" class="hidden">Enviando...</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="py-8 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-white font-bold text-sm">Alba Corregidor</span>
+      </div>
+      <p class="text-xs text-gray-500">
+        © 2025 Alba Corregidor · Todos los derechos reservados · Diseñado para la educación
+      </p>
+      <div class="flex gap-4">
+        <a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </a>
+        <a href="https://instagram.com/albacorregidor" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== TOAST ===== -->
+  <div id="toast" class="toast-msg"></div>
+
+  <!-- ===== EMAILJS ===== -->
+  <script>
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
+    const ejsScript = document.createElement('script');
+    ejsScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    ejsScript.onload = () => {
+      (window as any).emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    };
+    document.head.appendChild(ejsScript);
+
+    function showToast(msg: string, type: 'success' | 'error') {
+      const t = document.getElementById('toast')!;
+      t.textContent = msg;
+      t.className = `toast-msg toast-${type} show`;
+      setTimeout(() => t.classList.remove('show'), 4000);
+    }
+
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const btnText = document.getElementById('btn-text')!;
+    const btnLoading = document.getElementById('btn-loading')!;
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btnText.classList.add('hidden');
+      btnLoading.classList.remove('hidden');
+
+      const fd = new FormData(form);
+      try {
+        await (window as any).emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          from_name: fd.get('nombre'),
+          from_email: fd.get('email'),
+          level: fd.get('nivel'),
+          message: fd.get('mensaje'),
+        });
+        showToast('✅ ¡Mensaje enviado! Te respondo en menos de 24h.', 'success');
+        form.reset();
+      } catch {
+        showToast('❌ Error al enviar. Contáctame por WhatsApp.', 'error');
+      } finally {
+        btn.disabled = false;
+        btnText.classList.remove('hidden');
+        btnLoading.classList.add('hidden');
+      }
+    });
+  </script>
+</Layout>
