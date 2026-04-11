@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
   title?: string;
@@ -7,12 +7,12 @@ interface Props {
 }
 
 const {
-  title = 'Alba Corregidor — Profesora Particular',
-  description = 'Clases particulares de apoyo escolar con Alba Corregidor, licenciada en Magisterio. Personalización, seguimiento y resultados garantizados.',
+  title = "Alba Corregidor — Profesora Particular",
+  description = "Clases particulares de apoyo escolar con Alba Corregidor, licenciada en Magisterio. Personalización, seguimiento y resultados garantizados.",
 } = Astro.props;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -25,50 +25,206 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
   <body>
     <slot />
 
-    <!-- Scroll reveal animation -->
     <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-      );
-
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-      // Navbar scroll effect
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          navbar?.classList.add('navbar-scrolled');
-        } else {
-          navbar?.classList.remove('navbar-scrolled');
+      // ============================================================
+      // 2. HERO ANIMATIONS AL CARGAR
+      // ============================================================
+      document.addEventListener("DOMContentLoaded", () => {
+        const heroSection = document.getElementById("inicio");
+        if (heroSection) {
+          // Añadir clase que activa las animations CSS (animation-play-state: running)
+          heroSection.classList.add("hero-animate");
         }
       });
 
-      // Mobile menu toggle
-      const menuBtn = document.getElementById('menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      menuBtn?.addEventListener('click', () => {
-        mobileMenu?.classList.toggle('hidden');
-      });
+      // ============================================================
+      // 3. CANVAS PARTÍCULAS EN HERO
+      // ============================================================
+      function initHeroParticles() {
+        const heroSection = document.getElementById("inicio");
+        if (!heroSection) return;
 
-      // Close mobile menu on link click
-      document.querySelectorAll('#mobile-menu a').forEach((link) => {
-        link.addEventListener('click', () => {
-          mobileMenu?.classList.add('hidden');
+        const canvas = document.createElement("canvas");
+        canvas.id = "hero-canvas";
+        heroSection.insertBefore(canvas, heroSection.firstChild);
+
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        const particles: {
+          x: number;
+          y: number;
+          r: number;
+          dx: number;
+          dy: number;
+          opacity: number;
+          phase: number;
+        }[] = [];
+        const NUM_PARTICLES = 18;
+
+        function resize() {
+          canvas.width = heroSection!.offsetWidth;
+          canvas.height = heroSection!.offsetHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+
+        // Crear partículas
+        for (let i = 0; i < NUM_PARTICLES; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 3 + 1.5,
+            dx: (Math.random() - 0.5) * 0.3,
+            dy: (Math.random() - 0.5) * 0.3,
+            opacity: Math.random() * 0.3 + 0.1,
+            phase: Math.random() * Math.PI * 2,
+          });
+        }
+
+        let frame = 0;
+        function draw() {
+          if (!ctx) return;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          frame++;
+
+          particles.forEach((p) => {
+            p.x += p.dx;
+            p.y += p.dy;
+
+            // Rebotar suavemente
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+            const pulse = Math.sin(frame * 0.01 + p.phase) * 0.15 + p.opacity;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(26, 86, 219, ${Math.max(0, pulse)})`;
+            ctx.fill();
+          });
+
+          requestAnimationFrame(draw);
+        }
+        draw();
+      }
+
+      initHeroParticles();
+
+      // ============================================================
+      // 4. SCROLL REVEAL CON STAGGER AUTOMÁTICO
+      // ============================================================
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              // Una vez visible, dejar de observar (solo animar la primera vez)
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
+
+      // Stagger automático en grids con data-stagger
+      document.querySelectorAll("[data-stagger]").forEach((grid) => {
+        const children = Array.from(grid.children) as HTMLElement[];
+        children.forEach((child, i) => {
+          child.style.transitionDelay = `${i * 0.1}s`;
+          child.classList.add("reveal");
+          revealObserver.observe(child);
         });
       });
+
+      // Observer para separadores de sección
+      const dividerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              dividerObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document
+        .querySelectorAll(".section-divider")
+        .forEach((el) => dividerObserver.observe(el));
+
+      // ============================================================
+      // 5. NAVBAR SCROLL EFFECT
+      // ============================================================
+      const navbar = document.getElementById("navbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (window.scrollY > 50) {
+            navbar?.classList.add("navbar-scrolled");
+          } else {
+            navbar?.classList.remove("navbar-scrolled");
+          }
+        },
+        { passive: true }
+      );
+
+      // ============================================================
+      // 6. MOBILE MENU
+      // ============================================================
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuBtn?.addEventListener("click", () => {
+        mobileMenu?.classList.toggle("hidden");
+      });
+
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu?.classList.add("hidden");
+        });
+      });
+
+      // ============================================================
+      // 7. 3D TILT SUTIL EN CARDS
+      // ============================================================
+      function initCardTilt() {
+        document
+          .querySelectorAll(".service-card, .testimonial-card")
+          .forEach((card) => {
+            const el = card as HTMLElement;
+
+            el.addEventListener("mousemove", (e: MouseEvent) => {
+              const rect = el.getBoundingClientRect();
+              const cx = rect.left + rect.width / 2;
+              const cy = rect.top + rect.height / 2;
+              const dx = (e.clientX - cx) / (rect.width / 2);
+              const dy = (e.clientY - cy) / (rect.height / 2);
+              const rotX = -dy * 4;
+              const rotY = dx * 4;
+              el.style.transform = `translateY(-8px) scale(1.02) perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            });
+
+            el.addEventListener("mouseleave", () => {
+              el.style.transform = "";
+            });
+          });
+      }
+
+      initCardTilt();
     </script>
   </body>
 </html>

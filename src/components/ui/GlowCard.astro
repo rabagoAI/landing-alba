@@ -1,0 +1,168 @@
+---
+/**
+ * GlowCard — Spotlight Card component (Astro port of spotlight-card.tsx)
+ * Renders a card with an animated radial-gradient glow that follows the pointer.
+ *
+ * Props:
+ *  glowColor  — 'blue' | 'purple' | 'green' | 'red' | 'orange'  (default: 'blue')
+ *  class      — extra Tailwind / CSS classes to apply on the wrapper
+ *  id         — optional HTML id
+ */
+
+interface Props {
+    glowColor?: "blue" | "purple" | "green" | "red" | "orange";
+    class?: string;
+    id?: string;
+}
+
+const { glowColor = "blue", class: className = "", id } = Astro.props;
+
+const glowColorMap = {
+    blue: { base: 220, spread: 200 },
+    purple: { base: 280, spread: 300 },
+    green: { base: 120, spread: 200 },
+    red: { base: 0, spread: 200 },
+    orange: { base: 30, spread: 200 },
+};
+
+const { base, spread } = glowColorMap[glowColor];
+---
+
+<div
+    data-glow-card
+    id={id}
+    class:list={["glow-card", className]}
+    style={`--base:${base};--spread:${spread};`}
+>
+    <!-- inner glow layer (creates the border effect) -->
+    <div data-glow-inner></div>
+    <slot />
+</div>
+
+<style>
+    /* ── Card wrapper ──────────────────────────────────────────────── */
+    .glow-card {
+        --border: 3;
+        --radius: 18;
+        --size: 220;
+        --outer: 1;
+        --backdrop: hsl(0 0% 60% / 0.1);
+        --backup-border: var(--backdrop);
+        --border-size: calc(var(--border, 2) * 1px);
+        --spotlight-size: calc(var(--size, 150) * 1px);
+        --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+
+        position: relative;
+        border-radius: calc(var(--radius) * 1px);
+        border: var(--border-size) solid var(--backup-border);
+        background-color: var(--backdrop, transparent);
+        background-image: radial-gradient(
+            var(--spotlight-size) var(--spotlight-size) at
+                calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+            hsl(
+                var(--hue, 210) calc(var(--saturation, 100) * 1%)
+                    calc(var(--lightness, 70) * 1%) /
+                    var(--bg-spot-opacity, 0.12)
+            ),
+            transparent
+        );
+        background-size: calc(100% + (2 * var(--border-size)))
+            calc(100% + (2 * var(--border-size)));
+        background-position: 50% 50%;
+        background-attachment: fixed;
+        touch-action: none;
+        overflow: hidden;
+        box-shadow: 0 1rem 2rem -1rem rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        transition: box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    /* ── Glowing border via ::before / ::after ─────────────────────── */
+    .glow-card::before,
+    .glow-card::after {
+        pointer-events: none;
+        content: "";
+        position: absolute;
+        inset: calc(var(--border-size) * -1);
+        border: var(--border-size) solid transparent;
+        border-radius: calc(var(--radius) * 1px);
+        background-attachment: fixed;
+        background-size: calc(100% + (2 * var(--border-size)))
+            calc(100% + (2 * var(--border-size)));
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        mask: linear-gradient(transparent, transparent),
+            linear-gradient(white, white);
+        mask-clip: padding-box, border-box;
+        mask-composite: intersect;
+        -webkit-mask: linear-gradient(transparent, transparent),
+            linear-gradient(white, white);
+        -webkit-mask-clip: padding-box, border-box;
+        -webkit-mask-composite: destination-in;
+    }
+
+    /* bright spotlight on border */
+    .glow-card::before {
+        background-image: radial-gradient(
+            calc(var(--spotlight-size) * 0.75)
+                calc(var(--spotlight-size) * 0.75) at calc(var(--x, 0) * 1px)
+                calc(var(--y, 0) * 1px),
+            hsl(
+                var(--hue, 210) calc(var(--saturation, 100) * 1%)
+                    calc(var(--lightness, 55) * 1%) /
+                    var(--border-spot-opacity, 1)
+            ),
+            transparent 100%
+        );
+        filter: brightness(2);
+    }
+
+    /* white shimmer on border */
+    .glow-card::after {
+        background-image: radial-gradient(
+            calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5)
+                at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+            hsl(0 100% 100% / var(--border-light-opacity, 1)),
+            transparent 100%
+        );
+    }
+
+    /* ── Inner glow blur layer ──────────────────────────────────────── */
+    [data-glow-inner] {
+        position: absolute;
+        inset: 0;
+        will-change: filter;
+        opacity: var(--outer, 1);
+        border-radius: calc(var(--radius) * 1px);
+        border-width: calc(var(--border-size) * 20);
+        filter: blur(calc(var(--border-size) * 10));
+        background: none;
+        pointer-events: none;
+        border: none;
+    }
+</style>
+
+<script>
+    // Sync pointer coordinates as CSS custom properties on every .glow-card
+    // Uses a single document listener shared across all card instances.
+    (function initGlowCards() {
+        if ((window as any).__glowCardsInit) return;
+        (window as any).__glowCardsInit = true;
+
+        document.addEventListener("pointermove", (e: PointerEvent) => {
+            const { clientX: x, clientY: y } = e;
+            const xp = (x / window.innerWidth).toFixed(2);
+            const yp = (y / window.innerHeight).toFixed(2);
+
+            document
+                .querySelectorAll<HTMLElement>("[data-glow-card]")
+                .forEach((card) => {
+                    card.style.setProperty("--x", x.toFixed(2));
+                    card.style.setProperty("--xp", xp);
+                    card.style.setProperty("--y", y.toFixed(2));
+                    card.style.setProperty("--yp", yp);
+                });
+        });
+    })();
+</script>
